@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Laborpraktikum Zerkleinern</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Website/stylesheet.css">
+</head>
+
+<body>
+<header class="main-header">
+  <div class="nav-container">
+    <div class="logo-wrap">
+      <img alt="HoMe-Logo" class="home-logo" src="Website/HoMe-Logo_weisser_Rahmen.png">
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#einführung">Einführung</a></li>
+        <li><a href="#lernmodule">Lerneinheiten</a></li>
+        <li><a href="#chatbot">Chatbot für Fragen</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section id="einführung" class="hero">
+  <h1>Interaktive Lerneinheiten zum Praktikum "Zerkleinern"</h1>
+  <p>Diese Website mit interaktiven Lernmodulen dient der Vorbereitung auf das Praktikum „Zerkleinern” im Bereich der mechanischen Verfahrenstechnik. Zudem unterstützt sie bei der Protokollerstellung und dem Beantworten von Verständnisfragen mithilfe des digitalen Chatbots.</p>
+</section>
+
+<section id="lernmodule" class="tabs">
+
+  <input type="radio" name="tabs" id="tab1" checked>
+  <input type="radio" name="tabs" id="tab2">
+  <input type="radio" name="tabs" id="tab3">
+  <input type="radio" name="tabs" id="tab4">
+
+  <div class="tab-nav">
+    <label for="tab1">Lernmodul 1</label>
+    <label for="tab2">Lernmodul 2</label>
+    <label for="tab3">Lernmodul 3</label>
+    <label for="tab4">Lernmodul 4</label>
+  </div>
+
+  <div class="tab-content">
+
+    <div class="tab-panel" id="panel1">
+      <h2>Lerneinheit 1: Arbeitsschutz und Laborordnung</h2>
+      <p>Weißt du noch, wie du dich im Labor richtig verhältst? Finde es heraus!</p>
+      <div class="h5p-wrapper">
+  <iframe
+    src="https://app.lumi.education/api/v1/run/qVCqZx/embed"
+    allowfullscreen="allowfullscreen"
+    allow="geolocation *; microphone *; camera *; midi *; encrypted-media *">
+  </iframe>
+</div>
+<script src="https://app.lumi.education/api/v1/h5p/core/js/h5p-resizer.js" charset="UTF-8"></script>
+    </div>
+
+    <div class="tab-panel" id="panel2">
+      <h2>Lerneinheit 2: Vorlesung mechanische Verfahrenstechnik</h2>
+      <p>Erinnerst du dich noch an die Vorlesung? Oder warst du gar nicht da? Dann solltest du dir lieber die Notizen eines Kommilitonen schicken lassen...</p>
+      <div class="h5p-wrapper">
+  <iframe
+    src="https://app.lumi.education/api/v1/run/ajqFDH/embed"
+    allowfullscreen="allowfullscreen"
+    allow="geolocation *; microphone *; camera *; midi *; encrypted-media *">
+  </iframe>
+</div>
+<script src="https://app.lumi.education/api/v1/h5p/core/js/h5p-resizer.js" charset="UTF-8"></script>
+    </div>
+
+    <div class="tab-panel" id="panel3">
+      <h2>Lerneinheit 3: Betriebsanweisung und Praktika</h2>
+      <p>Das erwartet dich im Praktikum…</p>
+      <iframe></iframe>
+    </div>
+
+    <div class="tab-panel" id="panel4">
+      <h2>Lerneinheit 4: Protokoll erstellen</h2>
+      <p>Wie ein Laborprotokoll aufgebaut wird…</p>
+      <iframe></iframe>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="chatbot" class="chatbot-section">
+  <h2>Digitaler Lernassistent</h2>
+  <iframe></iframe>
+</section>
+
+	<footer class="footer">
+  <input type="checkbox" id="impressum-toggle">
+  <label for="impressum-toggle" class="footer-title">Impressum</label>
+
+  <div class="footer-content">
+	  <p>erstellt von Studierenden des Bachelors Technisches Informationsdesign im Rahmen des Projektes E-Learning:<br>
+	  Annalena Willner <br>
+	  Lisa-Renate Kästner</p>
+    <p>Hochschule Merseburg (FH)<br>
+    Eberhard-Leibnitz-Straße 2<br>
+    06217 Merseburg</p>
+	<p>Quellen- und Lizenznachweise werden auf Anfrage bereitgestellt.<br>
+		Alle Rechte den Verfassern Vorbehalten.<br>
+		Bei Fragen, Anmerkungen etc. bitte eine E-Mail an: lisa.wenige@hs-merseburg.de </p>
+  </div>
+</footer>
+</body>
+</html>

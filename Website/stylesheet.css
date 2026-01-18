@@ -1,0 +1,272 @@
+body {
+  font-family: 'Fira Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image:  linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),url("AQ3A0066.JPG");
+  background-size: cover;
+  background-attachment: fixed;
+  background-opacity: 70%;
+}
+
+.main-header {
+  background-color: #0e558c;
+  color: white;
+}
+
+.nav-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+	padding-left: 100px;
+  margin-right: auto;
+}
+
+.home-logo {
+  height: 72px;
+  width: auto;
+  display: block;
+}
+
+.main-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+
+
+.hero {
+  max-width: 1200px;
+  margin: 3rem auto 2rem auto;
+  padding: 0 2rem;
+}
+
+h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem;}
+h2 { font-size: 1.6rem; font-weight: 600; margin-bottom: .5rem;}
+p  { font-weight: 300; line-height: 1.5; }
+
+
+.tabs {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.tabs input { display: none; }
+
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab-nav label {
+  padding: 0.6rem 1.2rem;
+  background: #7da3a7;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  color: white;
+  user-select: none;
+}
+
+#tab1:checked ~ .tab-nav label[for="tab1"],
+#tab2:checked ~ .tab-nav label[for="tab2"],
+#tab3:checked ~ .tab-nav label[for="tab3"],
+#tab4:checked ~ .tab-nav label[for="tab4"] {
+  background: #495f61;
+  font-weight: 600;
+}
+
+.tab-content {
+  min-height: 580px;
+}
+
+.tab-panel {
+  background: #a5d7dc;
+  padding: 2rem;
+  border-radius: 20px;
+  display: none;
+}
+
+#tab1:checked ~ .tab-content #panel1,
+#tab2:checked ~ .tab-content #panel2,
+#tab3:checked ~ .tab-content #panel3,
+#tab4:checked ~ .tab-content #panel4 {
+  display: block;
+}
+
+.tab-panel iframe {
+  width: 100%;
+  height: 420px;
+  background: white;
+  border: none;
+  border-radius: 12px;
+}
+
+.h5p-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.h5p-wrapper iframe {
+  width: 100%;
+  height: 60vh;      
+  border: none;
+  border-radius: 12px; 
+  background: white;  
+}
+
+
+.chatbot-section {
+  max-width: 1200px;
+  margin: 3rem auto 4rem auto;
+  padding: 0 2rem;
+}
+
+.chatbot-section iframe {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+	background-color: #d2d2d2;
+}
+
+.footer {
+  background-color: #0e558c;
+  color: white;
+  padding: 1rem 2rem;
+  max-width: 100%;
+  box-sizing: border-box;
+	text-align: center;
+}
+
+.footer-title {
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+}
+
+.footer input[type="checkbox"] {
+  display: none;
+}
+
+.footer-content {
+  margin-top: 0.8rem;
+	margin-left: 45rem;
+  display: none;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-width: 1200px;
+  text-align: left;
+}
+
+#impressum-toggle:checked ~ .footer-content {
+  display: block;
+}
+
+.footer-content p {
+  margin: 0 0 0.6rem 0;
+}
+
+.footer-title:hover {
+  opacity: 0.75;
+}.footer {
+  background-color: #0e558c;
+  color: white;
+  padding: 1rem 2rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-title {
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+}
+
+.footer input[type="checkbox"] {
+  display: none;
+}
+
+.footer-content {
+  margin-top: 0.8rem;
+  display: none;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-width: 1200px;
+}
+
+#impressum-toggle:checked ~ .footer-content {
+  display: block;
+}
+
+.footer-content p {
+  margin: 0 0 0.6rem 0;
+}
+
+.footer-title:hover {
+  opacity: 0.75;
+}
+
+@media(max-width:900px){
+  .nav-container{
+    flex-direction:column;
+    height:auto;
+  }
+
+  .logo-wrap{
+    position:static;
+    transform:none;
+    margin-bottom:.5rem;
+    padding-left:40px; /* Tablet */
+  }
+
+  .tab-panel iframe{
+    height:350px;
+  }
+}
+@media(max-width:600px){
+  .h5p-wrapper iframe {
+    height: 400px;
+  }
+}
+
+@media(max-width:480px){
+  .logo-wrap{
+    padding-left:20px; /* Handy */
+  }
+}
