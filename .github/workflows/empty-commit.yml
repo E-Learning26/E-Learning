@@ -1,0 +1,30 @@
+name: Empty Commit
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'   # aller 4 Stunden
+  workflow_dispatch:        # erlaubt manuelle Durchläufe
+
+permissions:
+  contents: write           # nötig, um commits zu erlauben
+
+jobs:
+  empty-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0    # hole alle commits
+
+      - name: Create empty commit
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git fetch origin master
+          git checkout master
+          git reset --hard origin/master
+          git commit --allow-empty -m "repo aktiv stellen für streamlit"
+          git push origin master
