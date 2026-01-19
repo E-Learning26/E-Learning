@@ -6,73 +6,62 @@ from uuid import uuid4
 from dotenv import load_dotenv
 
 load_dotenv()
-pdf_path = "ZOGG.pdf"
-
-# PDF laden
-reader = PdfReader(pdf_path)
+documents = {
+     "doc1" : {
+         "title" : "Zogg, Martin: Einführung in die Verfahrenstechnik",
+         "path" : "sources/ZOGG-noch-kürzer.pdf"
+     }
+ }
+# # PDF laden
 pages = []
+for key, doc in documents.items():
+     reader = PdfReader(doc["path"])
+     for page_number, page in enumerate(reader.pages, start=95):
+         text = page.extract_text()
+         if text:
+             pages.append({
+                 "page": page_number,
+                 "text": text,
+                 "title": doc["title"]
+             })
 
-#for page in reader.pages:
-#    text = page.extract_text()
-#    if text:
-#        pages.append(text)
-
-pages = []
-for page_number, page in enumerate(reader.pages, start=1):
-    text = page.extract_text()
-    if text:
-        pages.append({
-            "page": page_number,
-            "text": text
-        })
-
-#full_text = "\n".join(pages)
 print(f"Loaded PDF with {len(pages)} pages")
 
 # Text in kleinere Bestandteile (Chunks) aufteilen
 text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=800,
-    chunk_overlap=100,
-)
-
-#chunks = text_splitter.split_text(full_text)
-#print(f"Created {len(chunks)} chunks")
-# Vektordatenbank einrichten und Kollektion erstellen
-client = chromadb.PersistentClient(path="./chroma_db")
+     chunk_size=800,
+     chunk_overlap=100,
+ )
+#
+# # Vektordatenbank einrichten und Kollektion erstellen
+client = chromadb.PersistentClient(path="./chroma_neu")
 emb = embedding_functions.SentenceTransformerEmbeddingFunction(
-    model_name="jinaai/jina-embeddings-v2-base-de"
+     model_name="jinaai/jina-embeddings-v2-base-de",
+     device="cpu"
 )
 collection = client.get_or_create_collection(
-    "verfahrenstechnik",
-    embedding_function=emb
+     "verfahrenstechnik",
+     embedding_function=emb
 )
-# PDF-Bestandteile (Chunks) zur Vektordatenbank hinzufügen
-#ids = [str(uuid4()) for _ in chunks]
-#metadatas = [{"source": pdf_path, "page": i} for i in range(len(chunks))]
-
-#collection.add(
-#    documents=chunks,
-#    metadatas=metadatas,
-#    ids=ids
-#)
+#
 ids = []
 metadatas = []
 chunks = []
 for page in pages:
-    page_chunks = text_splitter.split_text(page["text"])
+     page_chunks = text_splitter.split_text(page["text"])
 
-    for chunk in page_chunks:
-        chunks.append(chunk)
-        metadatas.append({
-            "source": pdf_path,
-            "page": page["page"]
-        })
-        ids.append(str(uuid4()))
+     for chunk in page_chunks:
+         chunks.append(chunk)
+         metadatas.append({
+             "source": page["title"],
+             "page": page["page"]
+         })
+         ids.append(str(uuid4()))
 
 collection.add(
-    documents=chunks,
-    metadatas=metadatas,
-    ids=ids
+     documents=chunks,
+     metadatas=metadatas,
+     ids=ids
 )
 
 print("Stored PDF in Chroma.")
@@ -81,7 +70,7 @@ print("Stored PDF in Chroma.")
 query = "Welche anderen Filtrationsmethoden gibt es außer Druckfiltration?"
 results = collection.query(
     query_texts=[query],
-    n_results=5,
+    n_results=10,
 )
 
 print(results)
