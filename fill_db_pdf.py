@@ -4,18 +4,43 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pypdf import PdfReader
 from uuid import uuid4
 from dotenv import load_dotenv
+from streamlit.elements.widgets.selectbox import SelectboxSerde
 
 load_dotenv()
 documents = {
      "doc1" : {
          "title" : "Zogg, Martin: Einführung in die Verfahrenstechnik",
          "path" : "sources/ZOGG-noch-kürzer.pdf"
-     }
+     },
+    "doc2" : {
+        "title" : "Beispiel 1 Protokoll Zerkleinern",
+        "path" : "sources/Bsp_Protokolle _MVT_Zerkleinern.pdf"
+    },
+    "doc3" : {
+        "title" : "Beispiel 2 Protokoll Zerkleinern",
+        "path" : "sources/Bsp_Protokolle Zerkleinerung.pdf"
+    },
+    "doc4" : {
+        "title" : "Wulf, Alex: Scriptum Krümelkunde",
+        "path" : "sources/Alex, Wulf; Krümelkunde (Skriptum).pdf"
+    },
+    "doc5" : {
+        "title": "Youtube-Links zu Brechern, Mühlen und weiteren Anlagen",
+        "path": "sources/LinkszuMVT.pdf"
+    }
  }
 # # PDF laden
 pages = []
 for key, doc in documents.items():
      reader = PdfReader(doc["path"])
+     if key == "doc1":
+         start_page = 95
+     else:
+         start_page = 1
+         if key == "doc4":
+             start_page = 101
+         else: start_page = 1
+
      for page_number, page in enumerate(reader.pages, start=95):
          text = page.extract_text()
          if text:
