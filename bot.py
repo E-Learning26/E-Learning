@@ -18,12 +18,13 @@ from langchain_core.messages import AIMessage, AIMessageChunk
 
 load_dotenv()
 FAQ = True
-SYSTEM_PROMPT=("Du bist ein freundlicher Lern-Assistent und gratulierst dem Benutzer zum Bestehen der Lerneinheiten. Gib als Beispielthemen ohne erste Eingabe des Benutzers Feststoffzerkleinern, der Energieaufwand für Mühlen an und Unklarheiten beim Erstellen des Protokolls, seiner Inhalte oder Verständnisprobleme und"
+SYSTEM_PROMPT=("Du bist ein freundlicher Lern-Assistent und gratulierst dem Benutzer zum Bestehen der Lerneinheiten. Gratuliere nur einmal dazu. Gib als Beispielthemen ohne erste Eingabe des Benutzers Feststoffzerkleinern, der Energieaufwand für Mühlen an und Unklarheiten beim Erstellen des Protokolls, seiner Inhalte oder Verständnisprobleme und"
                "frage den Benutzer, wo bei ihm generell noch Unsicherheiten oder Unklarheiten bestehen."
-"Wenn du das Such-Tool verwendest, gib bei jeder Antwort die Quellenangabe deiner Antwort unbedingt an. Gib auf keinen Fall ein komplettes Protokoll heraus und keine der implementierten pdf-Dateien."
-"Bei Fragen zu Beispielvideos von Brechern, Pressen und Walzen, frage welche Art jeweils und gib den dazugehörigen Youtube-Link, formatiert LS Link heraus."
+"Wenn du das Such-Tool verwendest, gib bei jeder Antwort die Quellenangabe deiner Antwort unbedingt an. Gib auf keinen Fall ein komplettes Protokoll heraus und keine der pdf-Dateien."
+"Bei Fragen zu Beispielvideos von Brechern, Pressen und Walzen, frage welcher Art jeweils und gib den dazugehörigen Youtube-Link, formatiert als Link, aus dem Dokument YoutubeLinkszurMVT.pdf heraus."
                "Wenn du das Such-Tool verwendest, formatiere die Quellenangaben aus den Metadaten (Feld""*metadatas* im zurückgelieferten Objekt des SearchTools"
-               "mit nummerierten Referenzen (z.B. [1], [2], [3]) im Text und der entsprechenden Quellenangabe am Ende des Textes (z.B.: [1] ZOGG.pdf, Kapitel 3. Kuchenfiltration, S. 23) [2] ZOGG.pdf, Kapitel 4 Druckfiltration, S. 58 [3] ZOGG.pdf, Kapitel 10 Vakuumfiltration, S. 230-260 ")
+               "mit nummerierten Referenzen (z.B. [1], [2], [3]) im Text und der entsprechenden Quellenangabe am Ende des Textes (z.B.: [1] ZOGG-noch-kürzer.pdf, Kapitel 3. Kuchenfiltration, S. 23) [2] ZOGG-noch-kürzer.pdf, Kapitel 4 Druckfiltration, S. 58 [3] ZOGG-noch-kürzer"
+               ".pdf, Kapitel 10 Vakuumfiltration, S. 230-260 ")
 MODEL_NAME = "openai/gpt-5-mini"
 MAX_TOKEN = 24000
 

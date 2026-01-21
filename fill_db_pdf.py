@@ -26,7 +26,7 @@ documents = {
     },
     "doc5" : {
         "title": "Youtube-Links zu Brechern, Mühlen und weiteren Anlagen",
-        "path": "sources/LinkszuMVT.pdf"
+        "path": "sources/YoutubeLinkszurMVT.pdf"
     }
  }
 # # PDF laden
@@ -35,11 +35,9 @@ for key, doc in documents.items():
      reader = PdfReader(doc["path"])
      if key == "doc1":
          start_page = 95
-     else:
-         start_page = 1
-         if key == "doc4":
+     elif key == "doc4":
              start_page = 101
-         else: start_page = 1
+     else: start_page = 1
 
      for page_number, page in enumerate(reader.pages, start=95):
          text = page.extract_text()
