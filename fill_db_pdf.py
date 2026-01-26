@@ -36,13 +36,11 @@ for key, doc in documents.items():
     else: start_page = 1
     for page_number, page in enumerate(reader.pages, start=start_page):
         text = page.extract_text()
-        if key=="doc2" and page_number <= 3:
-                print(f"PAGE_NUMBER {page_number} TEXT {text}")
         if text:
             pages.append({
                  "page": page_number,
                  "text": text,
-                 "title": doc["title"],
+                 "title": doc["title"]
             })
 
 print(f"Loaded {len(documents)} documents with {len(pages)} pages")
@@ -74,7 +72,7 @@ for page in pages:
          chunks.append(chunk)
          metadatas.append({
              "source": page["title"],
-             "page": page["page"],
+             "page": page["page"]
          })
          ids.append(str(uuid4()))
 
@@ -90,7 +88,7 @@ print("Stored PDF in Chroma.")
 query = "Welche anderen Filtrationsmethoden gibt es außer Druckfiltration?"
 results = collection.query(
     query_texts=[query],
-    n_results=10,
+    n_results=10
 )
 
 print(results)
