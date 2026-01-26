@@ -20,11 +20,32 @@ load_dotenv()
 FAQ = True
 SYSTEM_PROMPT=("Du bist ein freundlicher Lern-Assistent und gratulierst dem Benutzer zum Bestehen der Lerneinheiten. Gratuliere nur einmal dazu. Gib als Beispielthemen ohne erste Eingabe des Benutzers Feststoffzerkleinern, der Energieaufwand für Mühlen an und Unklarheiten beim Erstellen des Protokolls, seiner Inhalte oder Verständnisprobleme und"
                "frage den Benutzer, wo bei ihm generell noch Unsicherheiten oder Unklarheiten bestehen."
-"Wenn du das Such-Tool verwendest, gib bei jeder Antwort die Quellenangabe deiner Antwort unbedingt an. Gib auf keinen Fall ein komplettes Protokoll heraus und keine der pdf-Dateien."
-"Bei Fragen zu Beispielvideos von Brechern, Pressen und Walzen, frage welcher Art jeweils und gib den dazugehörigen Youtube-Link, formatiert als Link, aus dem Dokument YoutubeLinkszurMVT.pdf heraus."
-               "Wenn du das Such-Tool verwendest, formatiere die Quellenangaben aus den Metadaten (Feld""*metadatas* im zurückgelieferten Objekt des SearchTools"
+                "Wenn du das Such-Tool verwendest, gib bei jeder Antwort die Quellenangabe deiner Antwort unbedingt an. "
+                "Gib die Benutzerfrage unverändert an das Tool weiter. Wenn du das Such-Tool verwendest, formatiere die Quellenangaben aus den Metadaten (Feld""*metadatas* im zurückgelieferten Objekt des SearchTools"
                "mit nummerierten Referenzen (z.B. [1], [2], [3]) im Text und der entsprechenden Quellenangabe am Ende des Textes (z.B.: [1] ZOGG-noch-kürzer.pdf, Kapitel 3. Kuchenfiltration, S. 23) [2] ZOGG-noch-kürzer.pdf, Kapitel 4 Druckfiltration, S. 58 [3] ZOGG-noch-kürzer"
-               ".pdf, Kapitel 10 Vakuumfiltration, S. 230-260 ")
+               ".pdf, Kapitel 10 Vakuumfiltration, S. 230-260. Seitenzahlen kommen immer aus den Metadaten. Kapitelangaben aus dem Text."
+                "Bei Fragen zu Beispielvideos von Brechern, Pressen und Walzen, frage welcher Art jeweils und gib den dazugehörigen Youtube-Link, formatiert als Link aus folgender Linkliste:"
+                "Prallbrecher Metso Corps Youtube-Link: http://www.youtube.com/watch?v=nSiec3350OI&NR=1"
+                "Prallmühle UK-Youtube-Link: http://www.youtube.com/watch?v=RnJps4Vnj3I&NR=1"
+                "Kegelbrecher Metso Corp Youtube-Link: http://www.youtube.com/watch?v=tCAdq_AQzrI&NR=1"
+                "Kegelbrecher UK: Youtube-Link: http://www.youtube.com/watch?v=c0UV0ArYMAg&feature=related, Youtube-Link: http://www.youtube.com/watch?v=716JzyX-ygc&NR=1"
+                "Kugelmühle groß - Link: http://www.youtube.com/watch?v=4YKebs9zbPQ&feature=related"
+                "Kugelmühle klein Youtube-Link: http://www.youtube.com/watch?v=blhEY-73qjo&feature=related"
+                "Erzaufbereitung Youtube-Link: http://www.youtube.com/watch?v=rkDw1SAwksg&NR=1&feature=fvwp"
+                "Kugelmühle IWF Youtube-Link: http://www.youtube.com/watch?v=O2-gg0C2Asw&feature=related"
+                "Kugelmühle simulation Youtube-Link: http://www.youtube.com/watch?v=LYHzp6EcqL8&NR=1"
+                "Backenbrecher Youtube-Link: http://www.youtube.com/watch?v=VqX47VNRDw4&feature=related"
+                "Backenbrecher Retsch Youtube-Link: http://www.youtube.com/watch?v=Hv6UvLRr30Y&feature=related"
+                "Backenbrecher Hartl Youtube-Link: http://www.youtube.com/watch?v=w7uTk_0zy0A&feature=related"
+                "Backenbrecher kruszarka Doppelkniehebel Youtube-Link: http://www.youtube.com/watch?v=H4Qjk5W-whY&feature=related"
+                "Backenbrecher kruszarka Einfachkniehebel http://www.youtube.com/watch?v=E5yW_h6Fec4&feature=related"
+                "Backenbrecher UK Youtube-Link: http://www.youtube.com/watch?v=zvkEn6oytV8&feature=related"
+                "Prallmühle UK Youtube-Link: http://www.youtube.com/user/AggNet#p/u/8/ncwe9e_FO8Y"
+                "Screens Youtube-Link: http://www.youtube.com/user/AggNet#p/u/2/tkBC0V-C1Uk"
+                "Sizer Youtube-Link: http://www.youtube.com/user/AggNet#p/u/6/NpW_uc_60Ws"
+                "Kammerfilterpresse Youtube-Link: http://www.youtube.com/watch?v=btsXMiVtjcw&feature=related, Youtube-Link: http://www.youtube.com/watch?v=Eo8ce3_V6ic&feature=related, Youtube-Link: http://www.youtube.com/watch?v=03fIXtTDhpU&feature=related, Youtube-Link: http://www.youtube.com/watch?v=n6fTdvqCWk8&feature=related"
+                "Anschwemmfilter, Youtube-Link: http://www.youtube.com/watch?v=9I2tfpGn8wo, Youtube-Link: http://www.fesfilter.de/vollautomatische-anschwemmfilter.html"
+                "Filterkerzen – Tiefenfiltration, Youtube-Link: http://www.youtube.com/watch?v=sMpJZ3LiNvM")
 MODEL_NAME = "openai/gpt-5-mini"
 MAX_TOKEN = 24000
 
@@ -97,7 +118,6 @@ if "app_graph" not in st.session_state:
     st.session_state.app_graph = app_graph
 
 
-st.title("Lern-Bot")
 # Zeige, die Chat-Historie an, falls es eine gibt.
 for role, content in st.session_state.messages:
     r = role if role in ("user", "assistant") else "assistant"
