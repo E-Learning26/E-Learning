@@ -1,11 +1,10 @@
-from typing import Optional, Type, Any
+from typing import Optional, Type, Any, Dict, Literal
 from chromadb import Collection
 from langchain_core.tools import BaseTool
 from pydantic import BaseModel, Field, Extra
 from chromadb import Collection
-
 from process_results import process_results
-
+import sys
 
 # Anfrage, die Nutzende stellen
 class SearchToolInput(BaseModel):
@@ -21,8 +20,8 @@ class SearchToolInput(BaseModel):
 
 # Werkzeug (Tool), um die Datenbank abzufragen
 class SearchTool(BaseTool):
-    name: str = "lehrbuch_abfragen"
-    description: str = "Ermittle eine Antwort aus dem Lehrbuch auf Basis der Nutzerfrage."
+    name: str = "quellen_abfragen"
+    description: str = "Ermittle eine Antwort aus den Quellen auf Basis der Nutzerfrage."
     args_schema: Type[BaseModel] = SearchToolInput
 
     class Config:
@@ -35,6 +34,7 @@ class SearchTool(BaseTool):
 
     def _run(self, query: str, **kwargs) -> Any:
     #def _run(self, query: Optional[str], **kwargs) -> Any:
+
         try:
             results = self.collection.query(
                 query_texts=[query],
