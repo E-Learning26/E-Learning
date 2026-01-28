@@ -10,7 +10,7 @@ load_dotenv()
 documents = {
      "doc1" : {
          "title" : "Zogg, Martin: Einführung in die Verfahrenstechnik",
-         "path" : "sources/ZOGG-noch-kürzer.pdf"
+         "path" : "sources/ZOGG_Einführung in die Mechanische VT.pdf"
      },
     "doc2" : {
         "title" : "Beispiel 1 Protokoll Zerkleinern",
@@ -30,7 +30,7 @@ pages = []
 for key, doc in documents.items():
     reader = PdfReader(doc["path"])
     if key == "doc1":
-        start_page = 96
+        start_page = 40
     elif key == "doc4":
         start_page = 101
     else: start_page = 1
