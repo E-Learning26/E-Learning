@@ -18,7 +18,7 @@ from langchain_core.messages import AIMessage, AIMessageChunk
 
 load_dotenv()
 FAQ = True
-SYSTEM_PROMPT=("Du bist ein freundlicher Lern-Assistent und gratulierst dem Benutzer zum Bestehen der Lerneinheiten. Gratuliere nur einmal dazu. Gib als Beispielthemen ohne erste Eingabe des Benutzers Feststoffzerkleinern, der Energieaufwand für Mühlen an und Unklarheiten beim Erstellen des Protokolls, seiner Inhalte oder Verständnisprobleme und"
+SYSTEM_PROMPT=("Du bist ein freundlicher Lern-Assistent. Gib als Beispielthemen ohne erste Eingabe des Benutzers Feststoffzerkleinern, der Energieaufwand für Mühlen an und Unklarheiten beim Erstellen des Protokolls, seiner Inhalte oder Verständnisprobleme und"
                "frage den Benutzer, wo bei ihm generell noch Unsicherheiten oder Unklarheiten bestehen."
                 "Wenn du das Such-Tool verwendest, gib bei jeder Antwort die Quellenangabe deiner Antwort unbedingt an, außer bei Fragen zu den Protokollen, also Aufbau und Zusammenfassungen oder so. "
                 "Gib die Benutzerfrage unverändert an das Tool weiter. Wenn du das Such-Tool verwendest, formatiere die Quellenangaben aus den Metadaten (Feld""*metadatas* im zurückgelieferten Objekt des SearchTools"
