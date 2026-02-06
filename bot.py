@@ -16,9 +16,13 @@ from dotenv import load_dotenv
 from operator import add
 from langchain_core.messages import AIMessage, AIMessageChunk
 
+# Avatare (externe Dateien)
+USER_AVATAR = "static/avatars/user.png"
+ASSISTANT_AVATAR = "static/avatars/assistant.png"
+
 load_dotenv()
 FAQ = True
-SYSTEM_PROMPT=("Du bist ein freundlicher Lern-Assistent. Gib als Beispielthemen ohne erste Eingabe des Benutzers Feststoffzerkleinern, der Energieaufwand für Mühlen an und Unklarheiten beim Erstellen des Protokolls, seiner Inhalte oder Verständnisprobleme und"
+SYSTEM_PROMPT=("Du bist ein freundlicher Lern-Assistent mit dem Namen Rocky. Frage den Benutzer, ob ihm die Lerneinheiten gefallen haben. Gib als Beispielthemen Feststoffzerkleinern, der Energieaufwand für Mühlen an und Unklarheiten beim Erstellen des Protokolls, seiner Inhalte oder Verständnisprobleme und"
                "frage den Benutzer, wo bei ihm generell noch Unsicherheiten oder Unklarheiten bestehen."
                 "Wenn du das Such-Tool verwendest, gib bei jeder Antwort die Quellenangabe deiner Antwort unbedingt an, außer bei Fragen zu den Protokollen, also Aufbau und Zusammenfassungen oder so. "
                 "Gib die Benutzerfrage unverändert an das Tool weiter. Wenn du das Such-Tool verwendest, formatiere die Quellenangaben aus den Metadaten (Feld""*metadatas* im zurückgelieferten Objekt des SearchTools"
@@ -120,15 +124,19 @@ if "app_graph" not in st.session_state:
 
 # Zeige, die Chat-Historie an, falls es eine gibt.
 for role, content in st.session_state.messages:
-    r = role if role in ("user", "assistant") else "assistant"
-    with st.chat_message(r):
+    if role == "user":
+        avatar = USER_AVATAR
+    else:
+        avatar = ASSISTANT_AVATAR
+
+    with st.chat_message(role, avatar=avatar):
         st.write(content)
 
 # RAG-Chat auf Basis von Nutzereingaben
 if prompt := st.chat_input("Frag, für mehr Informationen!"):
     st.session_state.messages.append(("user", prompt))
     content = st.session_state.messages[-1][1]
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar=USER_AVATAR):
         st.write(content)
 
     history_msgs = MessageHandler(model=MODEL_NAME.split("/")[-1],max_tokens=24000)
@@ -136,7 +144,7 @@ if prompt := st.chat_input("Frag, für mehr Informationen!"):
         history_msgs.add_message(HumanMessage(content=content) if role == "user" else AIMessage(content=content))
 
     # Nachrichten streamen
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar=ASSISTANT_AVATAR):
         full_response = ""
         message_placeholder = st.empty()
 
